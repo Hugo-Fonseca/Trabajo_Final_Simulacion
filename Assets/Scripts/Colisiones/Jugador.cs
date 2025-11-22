@@ -1,42 +1,46 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class Jugador : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class PlayerMovementVertical : MonoBehaviour
 {
-    public float PlayerSpeed = 5f;
+    [Header("Movimiento")]
+    public float moveSpeed = 5f;
+    public Animator animator;
+
+    private Vector2 playerMoveInput;
     private Rigidbody2D rb;
-    private float directionY; // Almacena el valor de entrada del nuevo sistema
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        // Buenas prácticas para movimiento 2D
         rb.gravityScale = 0;
         rb.freezeRotation = true;
+
+        // Nos suscribimos al InputManager global
+        InputManager.Instance.OnMove += HandleMove;
     }
 
-    // Este callback recibe el input.
-    public void OnMove(InputAction.CallbackContext context)
+    void HandleMove(Vector2 input)
     {
-        Vector2 inputVector = context.ReadValue<Vector2>();
-        directionY = inputVector.y; // Solo la componente vertical
+        // Solo vertical
+        playerMoveInput = new Vector2(0, input.y);
     }
 
     void FixedUpdate()
     {
-        float velocityY = directionY * PlayerSpeed;
-        // ¡CORRECCIÓN AQUÍ! -> Usar 'rb.velocity' para Rigidbody2D
-        rb.linearVelocity = new Vector2(0, velocityY);
+        rb.linearVelocity = playerMoveInput * moveSpeed;
+
+        if (animator != null)
+        {
+            float speed = rb.linearVelocity.magnitude;
+            animator.SetFloat("Movement", speed * speed);
+            animator.SetFloat("MoveY", rb.linearVelocity.y);
+        }
     }
 
-    // Recomendación: Limpieza de la entrada
-    // Si tu InputManager usa eventos, desuscribe aquí si es el patrón usado:
-    /*
     private void OnDestroy()
     {
-        // Esto solo es necesario si te suscribes directamente a un evento del InputManager.Instance
-        // Si usas el componente PlayerInput, no es necesario.
-        // InputManager.Instance.OnMove -= HandleMove; 
+        if (InputManager.Instance != null)
+            InputManager.Instance.OnMove -= HandleMove;
     }
-    */
 }

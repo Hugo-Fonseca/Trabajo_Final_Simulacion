@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlanoInclinado.unity
     guid: 549f82c2d46a1504fa42cb38d5e9a3d8
+  - enabled: 1
+    path: Assets/Scenes/Colisiones.unity
+    guid: c1f33966bfc4723469a7b08f8a2ad941
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

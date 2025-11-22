@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Suelo
+  - Border
   layers:
   - Default
   - TransparentFX
