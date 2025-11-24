@@ -17,7 +17,7 @@ public class Proyectil : MonoBehaviour
 
     void Update()
     {
-        if (rb != null)
+        if (rb != null && textoVelocidad != null)
         {
             float velocidad = rb.linearVelocity.magnitude;
             textoVelocidad.text = "Vel: " + velocidad.ToString("F2") + " m/s";

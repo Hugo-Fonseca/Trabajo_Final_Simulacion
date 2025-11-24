@@ -23,6 +23,8 @@ public class InputManager : MonoBehaviour
     public event Action OnInteract;
     public event Action OnEscape;
     public event Action OnReset;
+    public event Action OnPause;
+
 
 
     void Awake()
@@ -60,6 +62,10 @@ public class InputManager : MonoBehaviour
         // Nuevo: Escape
         controls.Player.Escape.performed += _ => OnEscape?.Invoke();
 
+        // Nuevo: Pause
+        controls.Player.Pause.performed += _ => OnPause?.Invoke();
+
+
         // Detecta dispositivo
         InputSystem.onActionChange += OnActionChange;
     }
@@ -93,11 +99,7 @@ public class InputManager : MonoBehaviour
         InputSystem.onActionChange -= OnActionChange;
     }
 
-    // ====================================================
-    // MÉTODOS PARA NOMBRES E ICONOS
-    // ====================================================
-
-    // Limpia "/Keyboard/q" → "Q"
+    
     string CleanKeyName(string raw)
     {
         if (string.IsNullOrEmpty(raw)) return "";
@@ -175,4 +177,16 @@ public class InputManager : MonoBehaviour
     {
         return GetMapForCurrentDevice()?.GetIcon(binding.effectivePath);
     }
+
+    // En InputManager.cs (dentro de la clase InputManager)
+    public void SetPlayerControlsEnabled(bool enabled)
+    {
+        if (controls == null) return;
+
+        if (enabled)
+            controls.Player.Enable();
+        else
+            controls.Player.Disable();
+    }
+
 }

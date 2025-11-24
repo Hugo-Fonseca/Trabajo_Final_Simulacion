@@ -1,23 +1,36 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
     public GameObject gameOverPanel;
-  
+    private bool saved = false;
 
-    // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindGameObjectWithTag("Player") == null)
+        if (!saved && GameObject.FindGameObjectWithTag("Player") == null)
         {
+            saved = true;
             gameOverPanel.SetActive(true);
+
+            // Buscar el ScoreManager
+            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+
+            if (scoreManager != null)
+            {
+                int finalScore = (int)scoreManager.CurrentScore;
+
+                // Guardar en GameManager
+                GameManager.Instance.SaveBestScore(finalScore);
+
+                Debug.Log("Puntaje guardado: " + finalScore);
+            }
         }
     }
-    public void Restart ()
+
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
+
