@@ -4,6 +4,7 @@ public enum AnimalState
     Comer,       // Comiendo
     Jugar,       // Jugando
     Dormir,      // Durmiendo
-    Explorar     // Caminando por ahí
+    Explorar,     // Caminando por ahí
+    Asustado
 }
 

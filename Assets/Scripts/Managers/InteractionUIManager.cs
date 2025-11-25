@@ -11,6 +11,9 @@ public class InteractionUIManager : MonoBehaviour
     public TextMeshProUGUI interactText;
     public Image interactIcon;
 
+    [Header("Contador")]
+    public TextMeshProUGUI scareCounterText;   // <-- NUEVO
+
     [Header("Animación")]
     public float fadeSpeed = 5f;
 
@@ -57,5 +60,14 @@ public class InteractionUIManager : MonoBehaviour
     public void Hide()
     {
         isVisible = false;
+    }
+
+    // -----------------------------
+    //      ACTUALIZAR CONTADOR
+    // -----------------------------
+    public void UpdateScareCounter(int value)
+    {
+        if (scareCounterText != null)
+            scareCounterText.text = $"Asustado: {value}";
     }
 }

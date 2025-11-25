@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Colisiones.unity
     guid: c1f33966bfc4723469a7b08f8a2ad941
+  - enabled: 1
+    path: Assets/Scenes/CatsLife.unity
+    guid: 86f0debb3ccb6af4aa8d62e3969cf1b7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

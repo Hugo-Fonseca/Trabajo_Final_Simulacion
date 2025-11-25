@@ -15,7 +15,7 @@ public class SimulationManager : MonoBehaviour
         animales.Remove(a);
     }
 
-    void FixedUpdate() // Aquí llamamos SIMULATE en vez de Update
+    void FixedUpdate() 
     {
         float dt = Time.deltaTime;
 

@@ -124,7 +124,7 @@ public class InputManager : MonoBehaviour
     }
 
 
-    InputBinding? FindBindingForAction(string actionName)
+    InputBinding? FindBindingForAction(string actionName) 
     {
         var action = controls.asset.FindAction(actionName);
         if (action == null) return null;

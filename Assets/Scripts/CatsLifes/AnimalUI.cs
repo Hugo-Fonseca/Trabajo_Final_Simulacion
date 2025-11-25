@@ -6,7 +6,7 @@ public class AnimalUI : MonoBehaviour
 {
     public Animal animal;
     public TMP_Text stateText;
-    public TMP_Text energyText;     // ← NUEVO (muestra número de energía)
+    public TMP_Text energyText;     
 
     void Start()
     {

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6813528487706430810}
   - component: {fileID: 438981718716380270}
   - component: {fileID: 3782642442408012618}
-  - component: {fileID: 4302636296745628433}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -137,19 +136,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.4194112, y: 1.1646132}
   m_EdgeRadius: 0
---- !u!114 &4302636296745628433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1530361304222283610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b21d1911bbfda04086cccc5524fc18c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerEscape
-  mainSceneName: SampleScene
 --- !u!1 &3331187857118861721
 GameObject:
   m_ObjectHideFlags: 0
