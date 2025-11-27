@@ -8,11 +8,9 @@ public class SeguidorTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Objeto"))
         {
-            // Reiniciar simulación
             if (manager != null)
                 manager.DetectarSuelo();
-
-            // Destruir el objeto
+            
             Destroy(collision.gameObject);
         }
     }

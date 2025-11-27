@@ -46,7 +46,7 @@ public class Launcher2D : MonoBehaviour
     {
         
         {
-            Debug.Log("⛔ Espera a que el gato recoja la pelota y vuelva.");
+            Debug.Log("Espera a que el gato recoja la pelota y Regrese.");
             return;
         }
 

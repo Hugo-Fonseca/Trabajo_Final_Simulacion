@@ -9,7 +9,7 @@ public class SliderAnguloController : MonoBehaviour
     private void OnEnable()
     {
         if (InputManager.Instance != null)
-            InputManager.Instance.OnMove += HandleMoveInput; // joystick + WASD
+            InputManager.Instance.OnMove += HandleMoveInput; 
     }
 
     private void OnDisable()
@@ -21,6 +21,6 @@ public class SliderAnguloController : MonoBehaviour
     private void HandleMoveInput(Vector2 input)
     {
         float delta = input.x * sensibilidad * Time.deltaTime;
-        sliderAngulo.value += delta;  // esto moverá la rampa automáticamente
+        sliderAngulo.value += delta;  
     }
 }

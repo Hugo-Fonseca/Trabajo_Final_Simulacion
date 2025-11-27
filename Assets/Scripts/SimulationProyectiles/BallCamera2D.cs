@@ -14,7 +14,6 @@ public class BallCamera2D : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, objetivo, Time.deltaTime * suavizado);
     }
 
-    // MÉTODO SEGURO
     public void SetTarget(Transform t)
     {
         target = t;

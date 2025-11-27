@@ -16,13 +16,11 @@ public class PlayerMovementVertical : MonoBehaviour
         rb.gravityScale = 0;
         rb.freezeRotation = true;
 
-        // Nos suscribimos al InputManager global
         InputManager.Instance.OnMove += HandleMove;
     }
 
     void HandleMove(Vector2 input)
     {
-        // Solo vertical
         playerMoveInput = new Vector2(0, input.y);
     }
 

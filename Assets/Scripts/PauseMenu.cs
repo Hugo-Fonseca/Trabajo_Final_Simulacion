@@ -1,64 +1,55 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject menuUI;
+    public static PauseMenu Instance;
 
+    public GameObject menuUI;
     private bool paused = false;
-    private bool inputLocked = false;
+
+    private void Awake()
+    {
+        Instance = this;
+        ResumeGame();
+    }
 
     void OnEnable()
     {
-        InputManager.Instance.OnPause += HandlePauseInput;
+        InputManager.Instance.OnPause += TogglePause;
     }
 
     void OnDisable()
     {
         if (InputManager.Instance != null)
-            InputManager.Instance.OnPause -= HandlePauseInput;
+            InputManager.Instance.OnPause -= TogglePause;
     }
 
-    private void HandlePauseInput()
+    public void TogglePause()
     {
-        if (inputLocked) return;
-        StartCoroutine(InputCooldown());
-
-        if (!paused)
-            PauseGame();
-        else
+        if (paused)
             ResumeGame();
+        else
+            PauseGame();
     }
 
-    void PauseGame()
+    public void PauseGame()
     {
         paused = true;
         menuUI.SetActive(true);
         Time.timeScale = 0;
     }
 
-    void ResumeGame()
+    public void ResumeGame()
     {
         paused = false;
         menuUI.SetActive(false);
         Time.timeScale = 1;
     }
 
-    public void OnContinue()
-    {
-        ResumeGame(); 
-    }
-
     public void OnExit()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
-    }
-
-    private System.Collections.IEnumerator InputCooldown()
-    {
-        inputLocked = true;
-        yield return new WaitForSecondsRealtime(0.25f);
-        inputLocked = false;
     }
 }

@@ -42,7 +42,7 @@ public class Lanzador : MonoBehaviour
         // No permitir disparo si el gato aún está ocupado
         if (gato != null && gato.IsBusy())
         {
-            Debug.Log("⛔ Espera a que el gato regrese.");
+            Debug.Log("Espera a que el gato regrese.");
             return;
         }
 
@@ -56,7 +56,6 @@ public class Lanzador : MonoBehaviour
         Rigidbody2D rb = bala.GetComponent<Rigidbody2D>();
         rb.linearVelocity = puntoDisparo.right * sliderFuerza.value;
 
-        // Agregar script Proyectil
         Proyectil p = bala.AddComponent<Proyectil>();
         p.textoDistancia = textoDistancia;
         p.textoVelocidad = textoVelocidad;

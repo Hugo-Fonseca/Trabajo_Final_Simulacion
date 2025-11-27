@@ -37,25 +37,21 @@ public class CatNPC2D : MonoBehaviour
         }
         else
         {
-            // Quieto → animación idle
             animator.SetFloat("Movements", 0f);
         }
     }
 
     void MoveTowardsX(float targetX, float speed)
     {
-        // Para medir el movimiento real
         float oldX = transform.position.x;
 
         Vector2 p = transform.position;
         p.x = Mathf.MoveTowards(p.x, targetX, speed * Time.deltaTime);
         transform.position = p;
 
-        // -------- ANIMACIÓN --------
-        float movement = Mathf.Abs(p.x - oldX);  // cuánto se movió en este frame
+        float movement = Mathf.Abs(p.x - oldX); 
         animator.SetFloat("Movements", movement);
 
-        // -------- GIRO DEL SPRITE --------
         if (p.x > oldX)
             transform.localScale = new Vector3(1, 1, 1);  // mirando derecha
         else if (p.x < oldX)

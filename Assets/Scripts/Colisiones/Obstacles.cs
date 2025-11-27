@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class Obstacles : MonoBehaviour
 {
     private GameObject Player;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");

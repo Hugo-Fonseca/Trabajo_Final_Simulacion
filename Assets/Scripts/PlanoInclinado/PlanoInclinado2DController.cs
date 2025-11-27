@@ -25,7 +25,7 @@ public class PlanoInclinado2DManager : MonoBehaviour
     public float suavizadoSeguidor = 5f;
 
     [Header("Sprite del Seguidor")]
-    public Transform seguidorVisual;   // 👈 Aquí irá tu personaje animado
+    public Transform seguidorVisual;   
 
     private Rigidbody2D objetoActual;
     private float tiempo;
@@ -44,7 +44,6 @@ public class PlanoInclinado2DManager : MonoBehaviour
         if (objetoActual == null)
             return;
 
-        // --- UI ---
         anguloText.text = $"Ángulo: {angulo:F1}°";
         tiempoText.text = $"Tiempo: {tiempo:F2} s";
         velocidadText.text = $"Velocidad: {objetoActual.linearVelocity.magnitude:F2} m/s";
@@ -60,7 +59,6 @@ public class PlanoInclinado2DManager : MonoBehaviour
         if (objetoActual.linearVelocity.magnitude > 0.01f)
             tiempo += Time.deltaTime;
 
-        // --- Movimiento del seguidor ---
         if (seguidor != null)
         {
             Vector3 destino = new Vector3(
@@ -76,7 +74,6 @@ public class PlanoInclinado2DManager : MonoBehaviour
             );
         }
 
-        // --- Voltear sprite del seguidor ---
         if (seguidorVisual != null)
         {
             if (objetoActual.position.x > seguidor.position.x)

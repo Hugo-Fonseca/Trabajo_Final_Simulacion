@@ -29,11 +29,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocity = playerMoveInput * moveSpeed;
 
-        // 🔥 Actualizar animación según movimiento
-        float speed = rb.linearVelocity.magnitude;    // velocidad real
+        float speed = rb.linearVelocity.magnitude;    
         animator.SetFloat("Movement", speed*speed);
 
-        // 🔥 Para saber la dirección del movimiento (útil si quieres virar sprite)
         animator.SetFloat("MoveX", rb.linearVelocity.x);
         animator.SetFloat("MoveY", rb.linearVelocity.y);
 

@@ -13,14 +13,12 @@ public class GameOver : MonoBehaviour
             saved = true;
             gameOverPanel.SetActive(true);
 
-            // Buscar el ScoreManager
             ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
 
             if (scoreManager != null)
             {
                 int finalScore = (int)scoreManager.CurrentScore;
 
-                // Guardar en GameManager
                 GameManager.Instance.SaveBestScore(finalScore);
 
                 Debug.Log("Puntaje guardado: " + finalScore);

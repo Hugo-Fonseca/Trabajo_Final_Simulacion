@@ -8,10 +8,8 @@ public class DetectarSuelo2D : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Objeto"))
         {
-            // Destruir el objeto al tocar el suelo
             Destroy(collision.gameObject);
 
-            // Reiniciar simulación
             if (manager != null)
                 manager.DetectarSuelo();
         }

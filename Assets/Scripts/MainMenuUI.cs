@@ -3,8 +3,8 @@ using TMPro;
 
 public class MainMenuUI : MonoBehaviour
 {
-    public TMP_Text bestScoreText;    // Run Cat
-    public TMP_Text shooterBestScoreText; // Shooter
+    public TMP_Text bestScoreText;    
+    public TMP_Text shooterBestScoreText; 
     public TMP_Text scareCountText;
 
     void Start()

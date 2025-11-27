@@ -4342,7 +4342,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f79434b6444764685b714baed06ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputManager
-  gamepadMaps: []
+  gamepadMaps:
+  - {fileID: 11400000, guid: 73b64c945d4864c4aaa71578f4ea208b, type: 2}
+  - {fileID: 11400000, guid: 062b3c35f2ad2ab4195917386f522f72, type: 2}
+  - {fileID: 11400000, guid: 73f8156ba97577044a782dfc3d13a834, type: 2}
 --- !u!4 &1730209206
 Transform:
   m_ObjectHideFlags: 0

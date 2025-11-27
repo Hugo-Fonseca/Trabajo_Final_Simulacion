@@ -9,6 +9,6 @@ public class Door : MonoBehaviour, IInteractable
 
     public string GetInteractText()
     {
-        return "Abrir puerta";
+        return "Presiona P para menu de pausa";
     }
 }
