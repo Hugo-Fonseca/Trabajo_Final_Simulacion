@@ -7,12 +7,18 @@ public class Proyectil : MonoBehaviour
     public TMP_Text textoVelocidad;
     public Vector2 origen;
 
+    public AudioSource audioDisparo;   // NUEVO
+
     private bool contado = false;
     private Rigidbody2D rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // reproducir sonido cuando se instancia / lanza
+        if (audioDisparo != null)
+            audioDisparo.Play();
     }
 
     void Update()

@@ -16,6 +16,9 @@ public class CatNPC2D : MonoBehaviour
     private Transform ball;
     private bool returningToLauncher = false;
 
+    [Header("Sound")]
+    public AudioSource collectSound;  
+
     public bool IsBusy()
     {
         return ball != null || returningToLauncher;
@@ -49,13 +52,13 @@ public class CatNPC2D : MonoBehaviour
         p.x = Mathf.MoveTowards(p.x, targetX, speed * Time.deltaTime);
         transform.position = p;
 
-        float movement = Mathf.Abs(p.x - oldX); 
+        float movement = Mathf.Abs(p.x - oldX);
         animator.SetFloat("Movements", movement);
 
         if (p.x > oldX)
-            transform.localScale = new Vector3(1, 1, 1);  // mirando derecha
+            transform.localScale = new Vector3(1, 1, 1);
         else if (p.x < oldX)
-            transform.localScale = new Vector3(-1, 1, 1); // mirando izquierda
+            transform.localScale = new Vector3(-1, 1, 1);
     }
 
     public void SetBall(Transform ballTransform)
@@ -70,6 +73,9 @@ public class CatNPC2D : MonoBehaviour
         if (collision.transform != ball) return;
 
         Debug.Log("El gato recogió la pelota!");
+
+        if (collectSound != null)
+            collectSound.Play();
 
         // Detener cámara
         BallCamera2D cam = mainCamera.GetComponent<BallCamera2D>();
@@ -87,7 +93,7 @@ public class CatNPC2D : MonoBehaviour
         // Empezar retorno
         returningToLauncher = true;
 
-        // Reset cámara a inicio
+        // Reset cámara
         if (cameraStartPoint != null)
         {
             mainCamera.transform.position = new Vector3(

@@ -6,6 +6,8 @@ public class PauseMenu : MonoBehaviour
     public static PauseMenu Instance;
 
     public GameObject menuUI;
+    public AudioSource musicSource;
+
     private bool paused = false;
 
     private void Awake()
@@ -38,6 +40,9 @@ public class PauseMenu : MonoBehaviour
         paused = true;
         menuUI.SetActive(true);
         Time.timeScale = 0;
+
+        if (musicSource)
+            musicSource.Pause();
     }
 
     public void ResumeGame()
@@ -45,11 +50,16 @@ public class PauseMenu : MonoBehaviour
         paused = false;
         menuUI.SetActive(false);
         Time.timeScale = 1;
+
+        if (musicSource)
+            musicSource.UnPause();
     }
 
     public void OnExit()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("MainMenu");
+        Application.Quit();
+#if UNITY_EDITOR
+        Debug.Log("Cierre simulado en editor");
+#endif
     }
 }
