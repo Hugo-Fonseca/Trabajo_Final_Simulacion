@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,10 +9,15 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip killPlayerSound;
+    private AudioSource audioSource;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -42,11 +47,11 @@ public class Enemy : MonoBehaviour
         Quaternion q = Quaternion.Euler(0, 0, angle);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, rotationSpeed * Time.fixedDeltaTime);
 
-        
+        // Flip sprite según dirección
         if (targetDirection.x > 0.1f)
-            sr.flipX = false;  // mira derecha
+            sr.flipX = false;
         else if (targetDirection.x < -0.1f)
-            sr.flipX = true;   // mira izquierda
+            sr.flipX = true;
     }
 
     private void GetTarget()
@@ -61,12 +66,17 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            // 🔊 Sonido solo cuando mata al jugador
+            if (audioSource && killPlayerSound)
+                audioSource.PlayOneShot(killPlayerSound);
+
             Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("Bullet"))
         {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+            Destroy(other.gameObject);  // destruye la bala
+            Destroy(gameObject);        // destruye el enemigo
         }
     }
+
 }

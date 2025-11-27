@@ -21,6 +21,10 @@ public class PlayerShoot : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
 
+    [SerializeField] private AudioClip shootSound;
+    private AudioSource audioSource;
+
+
     private bool shootRequested = false;
 
     private void Start()
@@ -29,6 +33,8 @@ public class PlayerShoot : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         cam = Camera.main;
+
+        audioSource = GetComponent<AudioSource>();
 
         rb.freezeRotation = true;
 
@@ -96,9 +102,12 @@ public class PlayerShoot : MonoBehaviour
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
+        audioSource.PlayOneShot(shootSound);
+
         canShoot = false;
         Invoke(nameof(ResetShoot), fireRate);
     }
+
 
     private void ResetShoot()
     {
