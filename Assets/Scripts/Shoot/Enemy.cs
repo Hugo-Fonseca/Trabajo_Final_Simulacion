@@ -47,7 +47,6 @@ public class Enemy : MonoBehaviour
         Quaternion q = Quaternion.Euler(0, 0, angle);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, rotationSpeed * Time.fixedDeltaTime);
 
-        // Flip sprite según dirección
         if (targetDirection.x > 0.1f)
             sr.flipX = false;
         else if (targetDirection.x < -0.1f)
@@ -66,17 +65,22 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            // 🔊 Sonido solo cuando mata al jugador
             if (audioSource && killPlayerSound)
                 audioSource.PlayOneShot(killPlayerSound);
 
+            LevelManager.manager.GameOver();
             Destroy(other.gameObject);
+
         }
         else if (other.gameObject.CompareTag("Bullet"))
         {
-            Destroy(other.gameObject);  // destruye la bala
-            Destroy(gameObject);        // destruye el enemigo
+            Destroy(other.gameObject);
+
+            LevelManager.manager.AddScore(10);   
+
+            Destroy(gameObject);
         }
+
     }
 
 }

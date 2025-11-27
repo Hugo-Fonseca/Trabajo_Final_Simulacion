@@ -6,35 +6,59 @@ public class PauseMenu : MonoBehaviour
     public GameObject menuUI;
 
     private bool paused = false;
+    private bool inputLocked = false;
 
     void OnEnable()
     {
-        InputManager.Instance.OnPause += TogglePause;
+        InputManager.Instance.OnPause += HandlePauseInput;
     }
 
     void OnDisable()
     {
         if (InputManager.Instance != null)
-            InputManager.Instance.OnPause -= TogglePause;
+            InputManager.Instance.OnPause -= HandlePauseInput;
     }
 
-    public void TogglePause()
+    private void HandlePauseInput()
     {
-        paused = !paused;
+        if (inputLocked) return;
+        StartCoroutine(InputCooldown());
 
-        menuUI.SetActive(paused);
+        if (!paused)
+            PauseGame();
+        else
+            ResumeGame();
+    }
 
-        Time.timeScale = paused ? 0 : 1;
+    void PauseGame()
+    {
+        paused = true;
+        menuUI.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    void ResumeGame()
+    {
+        paused = false;
+        menuUI.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void OnContinue()
     {
-        TogglePause();
+        ResumeGame(); 
     }
 
     public void OnExit()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private System.Collections.IEnumerator InputCooldown()
+    {
+        inputLocked = true;
+        yield return new WaitForSecondsRealtime(0.25f);
+        inputLocked = false;
     }
 }

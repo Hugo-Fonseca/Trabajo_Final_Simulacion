@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CatsLife.unity
     guid: 86f0debb3ccb6af4aa8d62e3969cf1b7
+  - enabled: 1
+    path: Assets/Scenes/Shoot.unity
+    guid: 07f6341837ad661489defa302db03615
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
